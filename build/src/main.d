@@ -10,4 +10,5 @@
  teensy3/usb_rawhid.h teensy3/usb_flightsim.h teensy3/usb_mtp.h \
  teensy3/usb_audio.h teensy3/usb_touch.h teensy3/usb_undef.h \
  teensy3/WCharacter.h teensy3/elapsedMillis.h teensy3/WProgram.h \
- teensy3/IntervalTimer.h src/logger.h src/read_pps.h
+ teensy3/IntervalTimer.h libraries/FSAE-2017-Common/logger.h \
+ src/read_pps.h

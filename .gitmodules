@@ -1,3 +1,6 @@
 [submodule "libraries/Time"]
 	path = libraries/Time
 	url = git@github.com:PaulStoffregen/Time.git
+[submodule "libraries/FSAE-2017-Common"]
+	path = libraries/FSAE-2017-Common
+	url = git@github.com:joshjet/FSAE-2017-Common.git
