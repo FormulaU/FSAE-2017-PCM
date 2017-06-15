@@ -107,6 +107,7 @@ SIZE = $(abspath $(COMPILERPATH))/arm-none-eabi-size
 # automatically create lists of the sources and objects
 LC_FILES := $(wildcard $(LIBRARYPATH)/*/*.c)
 LCPP_FILES := $(wildcard $(LIBRARYPATH)/*/*.cpp)
+LS_FILES := $(wildcard $(LIBRARYPATH)/*/*.S)
 TC_FILES := $(wildcard $(COREPATH)/*.c)
 TCPP_FILES := $(wildcard $(COREPATH)/*.cpp)
 C_FILES := $(wildcard src/*.c)
@@ -116,7 +117,7 @@ INO_FILES := $(wildcard src/*.ino)
 # include paths for libraries
 L_INC := $(foreach lib,$(filter %/, $(wildcard $(LIBRARYPATH)/*/)), -I$(lib))
 
-SOURCES := $(C_FILES:.c=.o) $(CPP_FILES:.cpp=.o) $(INO_FILES:.ino=.o) $(TC_FILES:.c=.o) $(TCPP_FILES:.cpp=.o) $(LC_FILES:.c=.o) $(LCPP_FILES:.cpp=.o)
+SOURCES := $(C_FILES:.c=.o) $(CPP_FILES:.cpp=.o) $(INO_FILES:.ino=.o) $(TC_FILES:.c=.o) $(TCPP_FILES:.cpp=.o) $(LC_FILES:.c=.o) $(LCPP_FILES:.cpp=.o) $(LS_FILES:.S=.o)
 OBJS := $(foreach src,$(SOURCES), $(BUILDDIR)/$(src))
 
 all: hex
@@ -139,6 +140,11 @@ $(BUILDDIR)/%.o: %.c
 	@$(CC) $(CPPFLAGS) $(CFLAGS) $(L_INC) -o "$@" -c "$<"
 
 $(BUILDDIR)/%.o: %.cpp
+	@echo -e "[CXX]\t$<"
+	@mkdir -p "$(dir $@)"
+	@$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(L_INC) -o "$@" -c "$<"
+
+$(BUILDDIR)/%.o: %.S
 	@echo -e "[CXX]\t$<"
 	@mkdir -p "$(dir $@)"
 	@$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(L_INC) -o "$@" -c "$<"
