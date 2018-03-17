@@ -1,0 +1,12 @@
+[submodule "libraries/FlexCAN_Library"]
+	path = libraries/FlexCAN_Library
+	url = https://github.com/pawelsky/FlexCAN_Library.git
+[submodule "libraries/TeensyThreads"]
+	path = libraries/TeensyThreads
+	url = https://github.com/ftrias/TeensyThreads.git
+[submodule "libraries/Time"]
+	path = libraries/Time
+	url = https://github.com/PaulStoffregen/Time.git
+[submodule "libraries/FSAE-2017-Common"]
+	path = libraries/FSAE-2017-Common
+	url = https://github.com/FormulaU/FSAE-2017-Common.git

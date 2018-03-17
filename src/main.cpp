@@ -1,28 +1,13 @@
 #include "WProgram.h"
+#include <RMS_can_gen.h>
 
-extern "C" int main(void)
+int main(void)
 {
-#ifdef USING_MAKEFILE
-
-  // To use Teensy 3.0 without Arduino, simply put your code here.
-  // For example:
-
-  pinMode(13, OUTPUT);
   while (1) {
-    digitalWriteFast(13, HIGH);
     delay(250);
-    digitalWriteFast(13, LOW);
-    delay(250);
+    //Generate a torque message
+    struct CAN_message_t msg;
+    gen_cmd(&msg, 10, 10, true, true, false, 0);
   }
-
-
-#else
-  // Arduino's main() function just calls setup() and loop()....
-  setup();
-  while (1) {
-    loop();
-    yield();
-  }
-#endif
 }
 
