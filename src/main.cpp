@@ -4,9 +4,11 @@
 int main(void)
 {
   //Setup
+  pinMode(13, OUTPUT);
+  digitalWriteFast(13, HIGH);
   initialize_can();
   struct CAN_message_t msg;
-
+  
   //Send out inverter disable command to release lockout
   msg.id = 0xC0;
   msg.len = 8;
@@ -19,7 +21,8 @@ int main(void)
   can_write(msg);
   
   while (1) {
-    delay(250);
+    delay(125);
+    digitalWriteFast(13, HIGH);
     //Generate a torque message
     int16_t torque = 10;
     int16_t speed = 0;
@@ -29,6 +32,8 @@ int main(void)
     int16_t torque_limit = 0;
     gen_cmd(&msg, torque, speed, direction, enable, discharge, torque_limit);
     can_write(msg);
+    delay(125);
+    digitalWriteFast(13, LOW);
   }
 }
 
