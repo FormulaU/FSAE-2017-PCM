@@ -7,7 +7,15 @@ int main(void)
     delay(250);
     //Generate a torque message
     struct CAN_message_t msg;
-    gen_cmd(&msg, 10, 10, true, true, false, 0);
+    int16_t torque = 10;
+    int16_t speed = 0;
+    bool direction = true;
+    bool enable = true;
+    bool discharge = false;
+    int16_t torque_limit = 0;
+    gen_cmd(&msg, torque, speed, direction, enable, discharge, torque_limit);
+
+    
   }
 }
 
