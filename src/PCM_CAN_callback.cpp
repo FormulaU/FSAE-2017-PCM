@@ -1,4 +1,6 @@
+#include <RMS_CAN_driver.h>
 #include <PCM_CAN_callback.h>
+
 static const uint16_t RMS_IDs [] = {
   RMS_CAN_driver::CAN_OFFSET+0x0000,
   RMS_CAN_driver::CAN_OFFSET+0x0001,

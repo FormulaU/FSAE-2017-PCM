@@ -2,7 +2,9 @@
 #define PCM_CAN_CALLBACK_H
 
 #include <can_adapter.h>
-#include <RMS_CAN_driver.h>
+
+//Forward declaration
+class RMS_CAN_driver;
 
 class PCM_CAN_callback
 {
