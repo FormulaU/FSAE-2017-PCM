@@ -5,6 +5,7 @@ int main(void)
 {
   //Setup
   pinMode(13, OUTPUT);
+  
   digitalWriteFast(13, HIGH);
   initialize_can();
   struct CAN_message_t msg;
@@ -24,7 +25,12 @@ int main(void)
     delay(125);
     digitalWriteFast(13, HIGH);
     //Generate a torque message
-    int16_t torque = 10;
+    //int16_t torque = 255;
+    int16_t max_torque = 255;
+    int16_t zero_pos = 0;
+    int16_t max_pos = 1024;
+    int acc1 = analogRead(0);
+    int16_t torque = static_cast<int16_t>(((float) (acc1 - zero_pos) / 1023) / (((float) max_pos - zero_pos)/1023) * max_torque);
     int16_t speed = 0;
     bool direction = true;
     bool enable = true;
